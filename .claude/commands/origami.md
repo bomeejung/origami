@@ -1,6 +1,6 @@
 # Origami Self-Assessment
 
-Generate an origami plot self-assessment for an engineer, write it to markdown, then walk them through calibrating each domain interactively.
+Generate an origami plot self-assessment, write it to markdown, then walk the user through calibrating each domain interactively.
 
 **Arguments:** `$ARGUMENTS` — GitHub username or name (e.g., `janedoe`, `Jane`). If blank, detect from `git config user.name`.
 
@@ -35,7 +35,7 @@ Generate an origami plot self-assessment for an engineer, write it to markdown, 
 - **2 vs 3:** Team multiplication. A 2 fixes the instance. A 3 prevents the class.
 - **3 vs 4:** Scope of influence. A 3 sets standards within their domain. A 4 defines how the team approaches the domain itself.
 
-### Tier Thresholds
+### Progression
 
 - **F:** No domain above 1
 - **E:** At least one domain at 2
@@ -58,7 +58,7 @@ If the venv doesn't exist, create it first:
 python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 ```
 
-### 2. Identify the engineer and all aliases
+### 2. Identify the user and all aliases
 
 Read `config/identity-map.yaml` to find the canonical name and ALL aliases for this person.
 
@@ -180,21 +180,13 @@ The file MUST include a reference to generate the SVG chart:
 
 ## Origami Plot
 
-![Name — Data-Driven](firstname-lastname_YYYY-QN_initial.svg)
+*(This section is updated after calibration with the final chart and results table.)*
 
 *(Scores: 1=Following, 2=Owning, 3=Driving, 4=Shaping. Max=4.)*
 
-Generate this SVG by running:
-```bash
-python3 scripts/origami_plot.py --name "[Name]" --scores C,I,D,De,T,P -o origami-assessments/[firstname-lastname_YYYY-QN]_initial.svg
-```
+## Origami Shape
 
-## Summary
-
-**Data:** [X] commits, [Y] PRs merged, [Z] issues authored, [W] issues assigned, [V] PR reviews
-**Ticket authorship ratio:** [X]%
-**Total score:** [sum]/24
-**Tier:** [F/E/D/C] — [one sentence rationale]
+[Describe the shape — peaks, valleys, what it says about how this person contributes]
 
 ## Data-Driven Scores
 
@@ -222,13 +214,9 @@ python3 scripts/origami_plot.py --name "[Name]" --scores C,I,D,De,T,P -o origami
 
 **Evidence:** [2-3 sentences]
 
-## Origami Shape
-
-[Describe the shape — peaks, valleys, what it says about how this person contributes]
-
 ## Growth Signals
 
-[Early behaviors that predict tier transition, with specific PR/issue refs]
+[Early behaviors that predict progression, with specific PR/issue refs]
 
 ---
 
@@ -245,13 +233,13 @@ Write this file immediately. Tell the user where you saved it.
 
 Now go through each of the 6 domains **one at a time**. For each domain:
 
-1. Show the engineer the score and the evidence summary
+1. Show the user the score and the evidence summary
 2. Ask: **"Do you strongly agree, agree, disagree (too high), or disagree (too low) with this score? Why?"**
 3. Wait for their response
 4. If they disagree, clarify direction if ambiguous — "You think this should be higher or lower?" Then discuss — push back with evidence if you think the data supports the score, or concede if their reasoning is sound
 5. Record their response (including direction if they disagreed) AND any adjusted score
 
-After the engineer responds, **append** to the Self-Calibration section of the markdown file (do NOT overwrite the Data-Driven Scores — those stay as the original automated assessment):
+After the user responds, **append** to the Self-Calibration section of the markdown file (do NOT overwrite the Data-Driven Scores — those stay as the original automated assessment):
 
 ```markdown
 ### [Domain Name]
@@ -259,26 +247,28 @@ After the engineer responds, **append** to the Self-Calibration section of the m
 **Data-driven score:** [X] | **Self-assessment:** [strongly agree / agree / disagree / strongly disagree]
 **Adjusted score:** [X or new score if changed]
 
-> [Engineer's verbatim reasoning, quoted]
+> [User's verbatim reasoning, quoted]
 
 *[Any notes from the discussion — where you pushed back, what was resolved]*
 ```
 
 ### 7. Final summary and updated chart
 
-After all 6 domains are calibrated, append a final section to the markdown:
+After all 6 domains are calibrated:
 
-````markdown
----
-
-## Calibrated Results
-
-![Name — Calibrated](firstname-lastname_YYYY-QN_calibrated.svg)
-
-Generate this SVG by running:
+1. Generate the calibrated SVG:
 ```bash
 python3 scripts/origami_plot.py --name "[Name]" --scores [original] --calibrated [adjusted] -o origami-assessments/[firstname-lastname_YYYY-QN]_calibrated.svg
 ```
+
+2. **Update the Origami Plot section at the top** of the markdown — replace the placeholder with the calibrated chart and results table:
+
+````markdown
+## Origami Plot
+
+![Name — Calibrated](firstname-lastname_YYYY-QN_calibrated.svg)
+
+*(Scores: 1=Following, 2=Owning, 3=Driving, 4=Shaping. Max=4.)*
 
 | Domain | Data-Driven | Self-Assessment | Calibrated | Delta |
 |--------|-------------|-----------------|------------|-------|
@@ -290,15 +280,19 @@ python3 scripts/origami_plot.py --name "[Name]" --scores [original] --calibrated
 | Peer Development | X | [response] | Y | [+/-/=] |
 
 **Calibrated total:** [sum]/24
-**Calibrated tier:** [F/E/D/C]
+**Calibrated progression:** [F/E/D/C]
+````
 
+3. Append Growth Targets and Starfish **after** the Self-Calibration section:
+
+````markdown
 ## Growth Targets
 
 [1-2 specific, observable goals for next quarter based on the calibration conversation]
 
 ## Starfish
 
-For the domain(s) the engineer most wants to grow in:
+For the domain(s) the user most wants to grow in:
 
 - **Keep doing:**
 - **More of:**
@@ -309,7 +303,7 @@ For the domain(s) the engineer most wants to grow in:
 
 ### 8. Wrap up
 
-Tell the engineer where the final file is saved. Remind them this is a draft to bring to their 1:1 for manager calibration.
+Tell the user where the final file is saved. Remind them this is a draft to spark a conversation about where to invest in growth.
 
 ## Important Notes
 
@@ -318,5 +312,5 @@ Tell the engineer where the final file is saved. Remind them this is a draft to 
 - **One-off behaviors don't count.** 3+ instances over the assessment period.
 - **Domain Knowledge is hardest to score from data.** Be honest about what you know vs. what the code shows.
 - **The goal is an accurate shape, not a high score.**
-- **Push back respectfully.** If an engineer says "strongly disagree" but the data clearly supports the score, say so. The conversation is where the real calibration happens.
-- **This is a draft for their 1:1.** Manager has context the data can't capture.
+- **Push back respectfully.** If the user says "strongly disagree" but the data clearly supports the score, say so. The conversation is where the real calibration happens.
+- **This is a draft to spark a conversation about where to invest in growth.**

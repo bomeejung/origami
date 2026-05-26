@@ -4,10 +4,12 @@
 
 Origami scores engineers across six domains of engineering judgment using real data from your GitHub repos and git history, then calibrates through an interactive conversation. The result is a radar-like "origami plot" that shows where someone contributes — and where they're growing.
 
-Based on: [Cañadas-Gómez et al. (2023) "Origami plot: a novel multivariate data visualization tool that improves radar chart"](https://doi.org/10.1016/j.eswa.2023.120005)
+The intent behind the framework is that people should have the data to advocate for their own contributions and to plot their growth paths.
+
+See a [real example assessment](sample/bomee-jung_2026-Q1.md) to get a feel for what the output looks like.
 
 ## The Six Domains
-
+ 
 | Domain | What it measures |
 |--------|-----------------|
 | **Engineering Craft** | Shipped, secure, well-structured code. Architecture, security, design patterns, edge cases. |
@@ -39,6 +41,16 @@ Based on: [Cañadas-Gómez et al. (2023) "Origami plot: a novel multivariate dat
 | **E** | At least one domain at 2 |
 | **D** | At least two domains at 3 |
 | **C** | At least three domains at 3+, with 2+ in Team Systems |
+
+  _These tiers are just what we happen to use at Cadence OneFive. There's nothing special about F-C._
+
+## Philosophy
+
+- **The goal is an accurate shape, not a high score.** A healthy team has diverse shapes — someone who's a 4 in Craft and a 1 in Team Systems is contributing differently than someone who's a 3 across the board. Both are valuable.
+- **Scores describe what levels look like, not what to target.** Don't game the rubric.
+- **One-off behaviors don't count.** Score on sustained patterns (3+ instances) over the assessment quarter.
+- **Domain Knowledge is hardest to score from data.** Be honest about what the code shows vs. what you actually know about the business.
+- **This is a conversation starter, not a performance review.** The assessment is a draft to spark a conversation about where to invest in growth.
 
 ## Quick Start
 
@@ -92,7 +104,7 @@ claude
 ```
 
 This will:
-1. Query the database for the engineer's activity in the most recent completed quarter
+1. Query the database for your activity in the most recent completed quarter
 2. Score each domain based on commit patterns, issue authorship, PR complexity, and review activity
 3. Walk through each domain interactively for calibration
 4. Generate a markdown report with origami plot SVGs
@@ -156,13 +168,14 @@ Engineers appear under different names across git commits (`git config user.name
 1. **Data collection** — Query SQLite for commits, issues, PRs, and reviews within the assessment quarter
 2. **Classification** — Categorize the 15-20 most significant PRs and all self-authored issues into the 6 domains
 3. **Scoring** — Apply the rubric based on sustained patterns (3+ instances), not one-offs
-4. **Calibration** — Interactive conversation where the engineer agrees/disagrees with each score
+4. **Calibration** — Interactive conversation where you agree/disagree with each score
 5. **Output** — Markdown report with data-driven and calibrated scores, origami plot SVGs, and growth targets
 
 ### The Origami Plot
 
 Unlike a standard radar chart, the origami plot uses auxiliary axes between each main axis. This makes the enclosed area **invariant to axis ordering** — the shape means the same thing no matter how the domains are arranged. The auxiliary points sit at a fixed small radius, creating the star/origami pattern that gives the chart its name.
 
+Based on: [Cañadas-Gómez et al. (2023) "Origami plot: a novel multivariate data visualization tool that improves radar chart"](https://doi.org/10.1016/j.eswa.2023.120005)
 ## Configuration Reference
 
 ### `config/repos.yaml`
@@ -194,14 +207,6 @@ exclude_paths:                    # excluded from line counts
 bots:                             # filtered from human metrics
   - "dependabot[bot]"
 ```
-
-## Philosophy
-
-- **The goal is an accurate shape, not a high score.** A healthy team has diverse shapes — someone who's a 4 in Craft and a 1 in Team Systems is contributing differently than someone who's a 3 across the board. Both are valuable.
-- **Scores describe what levels look like, not what to target.** Don't game the rubric.
-- **One-off behaviors don't count.** Score on sustained patterns (3+ instances) over the assessment quarter.
-- **Domain Knowledge is hardest to score from data.** Be honest about what the code shows vs. what you actually know about the business.
-- **This is a conversation starter, not a performance review.** The assessment is a draft to bring to a 1:1. Your manager has context the data can't capture.
 
 ## License
 
