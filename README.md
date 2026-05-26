@@ -204,6 +204,20 @@ bots:                             # filtered from human metrics
   - "dependabot[bot]"
 ```
 
+## Notes
+
+References and takeaways that shaped the framework:
+
+- [Cañadas-Gómez et al. (2023) "Origami plot"](https://doi.org/10.1016/j.eswa.2023.120005) — Radar charts distort area based on axis order. The origami plot fixes this by adding auxiliary axes, making the enclosed area invariant to how domains are arranged.
+- [Scott Logic: A Critique of Radar Charts](https://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html) — Radar charts invite area comparisons that are mathematically meaningless. If you're going to visualize multivariate profiles, fix the geometry first.
+- [Sullivan (2022), PLOS ONE: Information Loss in Likert Scales](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0271949) — 1-5 scales compress to 2-4 in practice because raters avoid extremes. A 4-point scale forces every score to be a real choice.
+- [Greguras & Robie (1998): Interrater Reliability](https://link.springer.com/article/10.1007/BF02249609) — Rater disagreements are systematic, not random. Calibration needs to be anchored to shared evidence, not individual perception. This is why scores are data-driven first.
+- [Jellyfish: Goodhart's Law in Software Engineering](https://jellyfish.co/blog/goodharts-law-in-software-engineering-and-how-to-avoid-gaming-your-metrics/) — The moment people know the rubric, they optimize for it. Scores describe what a level looks like, not what to do to get there.
+- [Peña (2010), Medical Education Online: Dreyfus Model Critique](https://pmc.ncbi.nlm.nih.gov/articles/PMC2887319/) — No empirical evidence for discrete skill stages. Progression may be continuous, not stepped. Keep the levels as conversation anchors, not as truth.
+- [PostHog: The Magic of Small Engineering Teams](https://posthog.com/newsletter/small-teams) — Small teams may not need formal leveling. This framework is a growth conversation tool, not a performance system.
+- [Redd: Titles for Software Engineers](https://medium.com/@lindseyredd/titles-for-software-engineers-fe926318ef4a) — Judgment-based frameworks can entrench visibility bias. Data-driven scoring reduces dependence on who happened to notice the work.
+- [NASA-TLX](https://en.wikipedia.org/wiki/NASA-TLX) — One of the most validated multidimensional assessments uses six dimensions. More axes means rater fatigue and domain overlap. We consolidated from ten to six.
+
 ## License
 
 MIT
