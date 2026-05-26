@@ -171,7 +171,7 @@ Engineers appear under different names across git commits (`git config user.name
 
 Unlike a standard radar chart, the origami plot uses auxiliary axes between each main axis. This makes the enclosed area **invariant to axis ordering** — the shape means the same thing no matter how the domains are arranged. The auxiliary points sit at a fixed small radius, creating the star/origami pattern that gives the chart its name.
 
-Based on: [Cañadas-Gómez et al. (2023) "Origami plot: a novel multivariate data visualization tool that improves radar chart"](https://www.sciencedirect.com/science/article/pii/S0957417423005079)
+Based on: [Duan et al. (2023) "Origami plot: a novel multivariate data visualization tool that improves radar chart"](https://doi.org/10.1016/j.jclinepi.2023.02.020)
 ## Configuration Reference
 
 ### `config/repos.yaml`
