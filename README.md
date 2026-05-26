@@ -208,7 +208,7 @@ bots:                             # filtered from human metrics
 
 References and takeaways that shaped the framework:
 
-- [Cañadas-Gómez et al. (2023) "Origami plot"](https://www.sciencedirect.com/science/article/pii/S0957417423005079) — Radar charts distort area based on axis order. The origami plot fixes this by adding auxiliary axes, making the enclosed area invariant to how domains are arranged.
+- [Duan et al. (2023) "Origami plot"](https://doi.org/10.1016/j.jclinepi.2023.02.020) — Radar charts distort area based on axis order. The origami plot fixes this by adding auxiliary axes, making the enclosed area invariant to how domains are arranged.
 - [Scott Logic: A Critique of Radar Charts](https://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html) — Radar charts invite area comparisons that are mathematically meaningless. If you're going to visualize multivariate profiles, fix the geometry first.
 - [Sullivan (2022), PLOS ONE: Information Loss in Likert Scales](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0271949) — 1-5 scales compress to 2-4 in practice because raters avoid extremes. A 4-point scale forces every score to be a real choice.
 - [Greguras & Robie (1998): Interrater Reliability](https://link.springer.com/article/10.1007/BF02249609) — Rater disagreements are systematic, not random. Calibration needs to be anchored to shared evidence, not individual perception. This is why scores are data-driven first.
