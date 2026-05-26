@@ -1,0 +1,47 @@
+# Identity Map — git author aliases to canonical names
+#
+# Git commits use whatever name the committer configured locally,
+# so one person may appear as "Jane", "jane", "jane.doe", "jdoe", etc.
+# Map all aliases to a single canonical name here.
+
+aliases:
+  # Jane Doe (@janedoe on GitHub)
+  jdoe: "Jane Doe"
+  "jane doe": "Jane Doe"
+  janedoe: "Jane Doe"
+
+  # Bob Smith (@bobsmith on GitHub)
+  bobsmith: "Bob Smith"
+  "Robert Smith": "Bob Smith"
+
+# GitHub handles for display (canonical name -> handle)
+# Used by the origami assessment to query issues/PRs by author
+github_handles:
+  "Jane Doe": janedoe
+  "Bob Smith": bobsmith
+
+# Team roles — provides context for AI-assisted scoring
+# Describe each person's role so the assessment can interpret
+# their contribution patterns correctly
+team_roles:
+  "Jane Doe": "Senior Developer, Backend"
+  "Bob Smith": "Tech Lead, Full Stack"
+
+# Paths to exclude from line-count stats (globs)
+# Lock files, generated code, docs, images, etc.
+exclude_paths:
+  - "*.md"
+  - "*.txt"
+  - "*.lock"
+  - "package-lock.json"
+  - "*.svg"
+  - "*.png"
+  - "*.jpg"
+  - "*.gif"
+  - "docs/**"
+
+# Bot accounts to filter out of human metrics
+bots:
+  - "dependabot[bot]"
+  - "renovate[bot]"
+  - "github-actions[bot]"

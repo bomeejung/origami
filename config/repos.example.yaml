@@ -1,0 +1,13 @@
+# Repository configuration
+# List the repos you want to track. Each needs:
+#   path:   local git clone path (for commit extraction)
+#   github: owner/repo on GitHub (for issues and PRs)
+
+repositories:
+  my-app:
+    path: /home/you/code/my-app
+    github: your-org/my-app
+
+  my-api:
+    path: /home/you/code/my-api
+    github: your-org/my-api
