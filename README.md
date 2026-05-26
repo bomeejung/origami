@@ -95,7 +95,7 @@ This populates `db/origami.sqlite` with commits, issues, and PRs from all config
 
 ### Run an Assessment
 
-If you use [Claude Code](https://claude.ai/code), the interactive assessment is built in:
+The interactive assessment runs through [Claude Code](https://claude.ai/code) (Anthropic's CLI tool). Install it, then run it from the repo root — the `/origami` command is bundled in `.claude/commands/` and picked up automatically:
 
 ```bash
 # In the origami directory
@@ -103,11 +103,7 @@ claude
 # Then type: /origami janedoe
 ```
 
-This will:
-1. Query the database for your activity in the most recent completed quarter
-2. Score each domain based on commit patterns, issue authorship, PR complexity, and review activity
-3. Walk through each domain interactively for calibration
-4. Generate a markdown report with origami plot SVGs
+Claude scores each domain from your data, then walks you through a calibration conversation where you agree or push back on each score. The output is a markdown report with origami plot SVGs.
 
 ### Generate a Plot Manually
 
